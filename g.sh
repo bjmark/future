@@ -1,0 +1,2 @@
+rails g resource trade
+
