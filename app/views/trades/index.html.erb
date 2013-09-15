@@ -1,0 +1,54 @@
+<p>
+<%=link_to '开仓', new_trade_path(:kp=>'开仓') %>
+</p>
+<% @trades.each do |e| %>
+  <table class="table table-bordered">
+    <% 
+      if e.profit
+        color = e.profit > 0 ? 'color:red' : 'color:green'
+      else
+        color = ''
+      end
+    %>
+    <tr style="<%= color%>">
+      <th><%= e.op_time.to_s(:db)[0..-4] %></th>
+      <th><%= e.op %></th>
+      <th><%= e.contract %></th>
+      <th><%= e.price %>元</th>
+      <th><%= e.hand %>手</th>
+      <th><%= "#{e.profit}元" if e.profit %></th>
+      <td>
+        <%= link_to '修改', edit_trade_path(e)%>
+        <%= form_for e, :method => :delete, :html => {:style=>"display:inline"} do |f| %>
+          <%= f.submit '删除', :confirm => '确定吗?',:class=>"btn" %>
+        <% end %>
+        <%= link_to '平仓', new_trade_path(:kp=>'平仓', :parent_id=>e.id)%>
+      </td>
+    </tr>
+    <% e.close_trades.each do |e2| %>
+      <% 
+        if e2.profit
+          color = e2.profit > 0 ? 'color:red' : 'color:green'
+        else
+          color = ''
+        end
+      %>
+      <tr style="<%= color%>">
+        <td><%= e2.op_time.to_s(:db)[0..-4] %></td>
+        <td><%= e2.op %></td>
+        <td><%= e2.contract %></td>
+        <td><%= e2.price %>元</td>
+        <td><%= e2.hand %>手</td>
+        <td>
+          <%= "#{e2.profit}元" if e2.profit %>
+        </td>
+        <td>
+          <%= link_to '修改', edit_trade_path(e2)%>
+          <%= form_for e2, :method => :delete, :html => {:style=>"display:inline"} do |f| %>
+            <%= f.submit '删除', :confirm => '确定吗?',:class=>"btn" %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>
