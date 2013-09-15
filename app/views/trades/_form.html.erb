@@ -1,0 +1,40 @@
+<%= form_for @trade do |t| %>
+  <%= t.hidden_field :kp %>
+  <%= t.hidden_field :parent_id %>
+  <h2><%= @trade.kp %></h2>
+  <div class="control-group">
+    <% ['买', '卖'].each do |e| %>
+      <label class="radio inline">
+        <%= t.radio_button :op, e, :disabled=>(@trade.kp == '平仓') %>
+        <%= e %>
+      </label>
+    <% end %>
+  </div>
+  <div class="control-group">
+    <label class="inline">
+      合约
+      <%= t.text_field :contract, :disabled=>(@trade.kp == '平仓') %>
+    </label>
+  </div>
+  <div class="control-group">
+    <label class="inline">
+      手数
+      <%= t.text_field :hand %>
+    </label>
+  </div>
+  <div class="control-group">
+    <label class="inline">
+      价格
+      <%= t.text_field :price %>
+    </label>
+  </div>
+  <div class="control-group">
+    <label class="inline">
+      时间
+      <%= t.text_field :op_time, :size=>32 %>
+    </label>
+  </div>
+  <button type="submit" class="btn">提交</button>
+  <%= link_to '返回', trades_path%>
+<%end%>
+
