@@ -1,0 +1,43 @@
+<%= form_for @plan do |t| %>
+  <h2><%= @plan.new_record? ? '新建计划' : '修改计划' %></h2>
+  <div class="control-group">
+    <label class="inline">
+      名称
+      <%= t.text_field :name %>
+    </label>
+  </div>
+  <div class="control-group">
+    <label class="inline">
+      开始日期
+      <%= t.text_field :start_date %>
+    </label>
+  </div>
+  <div class="control-group">
+    <label class="inline">
+      任务数
+      <%= t.text_field :task_count %>
+    </label>
+  </div>
+  <div class="control-group">
+    <label class="inline">
+      复习计划
+      <%= t.text_field :review_plan %>
+    </label>
+  </div>
+  <div class="control-group">
+    <label class="inline">
+      每日最多任务数
+      <%= t.text_field :max_task_per_day %>
+    </label>
+  </div>
+  <div class="control-group">
+    <label class="inline">
+      每人最多新任务数
+      <%= t.text_field :max_new_task_per_day %>
+    </label>
+  </div>
+
+  <button type="submit" class="btn">提交</button>
+  <%= link_to '返回', trades_path%>
+<%end%>
+

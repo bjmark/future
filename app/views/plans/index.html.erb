@@ -1,0 +1,31 @@
+<p>
+<%=link_to '新建', new_plan_path %>
+</p>
+<table class="table table-bordered">
+  <tr>
+    <th>名称</th>
+    <th>开始日期</th>
+    <th>任务数</th>
+    <th>复习计划</th>
+    <th>每日最多任务数</th>
+    <th>每日最多新任务数</th>
+    <th>
+    </th>
+  </tr>
+  <% @plans.each do |e| %>
+    <tr>
+      <td><%= e.name %></td>
+      <td><%= e.start_date %></td>
+      <td><%= e.task_count %></td>
+      <td><%= e.review_plan %></td>
+      <th><%= e.max_task_per_day %></th>
+      <th><%= e.max_new_task_per_day %></th>
+      <td>
+        <%= link_to '修改', edit_plan_path(e)%>
+        <%= form_for e, :method => :delete, :html => {:style=>"display:inline"} do |f| %>
+          <%= f.submit '删除', :confirm => '确定吗?',:class=>"btn" %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>
