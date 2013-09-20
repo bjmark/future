@@ -91,6 +91,7 @@ class TradesController < ApplicationController
   end
 
   def set_title
+    @bread_crumbs = [['首页', '/']]
     @title = '期货交易记录'
   end
 end
