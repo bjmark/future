@@ -4,4 +4,4 @@
 #rails g migration add_profit
 #rails g migration add_kind
 #rails g resource plan
-
+rails g controller home

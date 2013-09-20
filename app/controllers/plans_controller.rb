@@ -28,6 +28,7 @@ class PlansController < ApplicationController
   end
 
   def set_title
+    @bread_crumbs = [['首页', '/']]
     @title = '学习计划'
   end
 end
