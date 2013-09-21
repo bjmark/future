@@ -1,2 +1,2 @@
-future trade tracking
-study planing
+* future trade tracking
+* study planing
