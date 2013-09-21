@@ -1,6 +1,8 @@
 #encoding=utf-8
 
 class TradesController < ApplicationController
+  before_filter :set_title
+
   def index
     @trades = Trade.where(:parent_id=>0).order("id DESC")
   end
@@ -86,5 +88,10 @@ class TradesController < ApplicationController
     else
       @trade.save
     end
+  end
+
+  def set_title
+    @bread_crumbs = [['首页', '/']]
+    @title = '期货交易记录'
   end
 end

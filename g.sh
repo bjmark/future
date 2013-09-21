@@ -3,4 +3,9 @@
 #rails g migration add_parent_id
 #rails g migration add_profit
 #rails g migration add_kind
-
+#rails g resource plan
+#rails g controller home
+#rails g resource plan_day
+#rails g migration add_description
+#rails g migration add_task
+rails g migration add_finish_task

@@ -1,16 +1,24 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Future</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-  <div class="container">
-    <h1>期货交易记录</h1>
-    <hr>
-    <%= yield %>
-  </div>
-</body>
+  <head>
+    <title>Future</title>
+    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row"> 
+        <div class="span12"> 
+          <% @bread_crumbs.each do |e| %>
+            <%= link_to e[0], e[1] %>
+            <%= ' >> ' %>
+          <% end %>
+          <h1 style="display:inline"><%= @title %></h1>
+          <hr>
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
