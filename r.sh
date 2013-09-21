@@ -11,5 +11,5 @@
 rspec -f d spec/models/plan_spec.rb 
 
 #routing
-#rspec -f d spec/routing/users_routing_spec.rb 
+#rspec -f d spec/routing/plans_routing_spec.rb 
 

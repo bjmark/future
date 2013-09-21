@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130916012247) do
+ActiveRecord::Schema.define(version: 20130920124059) do
+
+  create_table "plan_days", force: true do |t|
+    t.date     "task_date"
+    t.integer  "plan_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "task"
+    t.string   "new_task"
+    t.string   "finish_task"
+    t.string   "is_done",     limit: 1
+  end
 
   create_table "plans", force: true do |t|
     t.string   "name"
@@ -22,6 +33,7 @@ ActiveRecord::Schema.define(version: 20130916012247) do
     t.integer  "max_new_task_per_day"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "description"
   end
 
   create_table "trades", force: true do |t|

@@ -1,12 +1,15 @@
+#encoding=utf-8
+
 class Plan < ActiveRecord::Base
   attr_reader :h
+  has_many :plan_days
 
   def build
     @h = {}
     
     (1..task_count).each do |task_i|
-      100.times do
-        d = task_start_date(task_i)
+      d = task_start_date(task_i)
+      while true
         break if try_plan(task_i, d)
         h_delete(task_i)
         d += 1
@@ -55,13 +58,44 @@ class Plan < ActiveRecord::Base
   end
 
   def task_start_date(task_i)
-    return 0 if @h.empty?
+    res = 0
+    while true
+      if (@h[res].nil? or (@h[res][:new_task].size < max_new_task_per_day and @h[res][:task].size < max_task_per_day))
+        break
+      end
+      res += 1
+    end
+    res
+  end
 
-    d = @h.find do |k,v|
-      v[:new_task].size < max_new_task_per_day && v[:task].size < max_task_per_day
+  def my_validate
+    if self.name.blank?
+      errors.add(:name, "名称不能为空")
+    end
+    
+    if self.start_date.blank?
+      errors.add(:start_date, "开始日期不能为空")
     end
 
-    return d[0] if d
-    @h.keys.max + 1
+    if self.task_count.blank?
+      errors.add(:task_count, "任务数不能为空")
+    end
+    
+    if self.review_plan.blank?
+      errors.add(:review_plan, "复习计划不能为空")
+    end
+    
+    if self.max_task_per_day.blank?
+      errors.add(:max_task_per_day, "每日最多任务数不能为空")
+    end
+    
+    if self.max_new_task_per_day.blank?
+      errors.add(:max_new_task_per_day, "每日最多新任务数不能为空")
+    end
+  end
+
+  def delete2
+    PlanDay.delete_all(:plan_id=>id)
+    destroy
   end
 end
