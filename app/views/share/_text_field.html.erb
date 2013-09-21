@@ -1,0 +1,10 @@
+<div class="control-group <%= 'error' if !obj.errors[name].empty?%>">
+  <label class="control-label"><%= label %></label>
+  <div class="controls">
+    <%= t.text_field name %>
+    <% if !obj.errors[name].empty? %>
+      <span class="help-inline"><%= @plan.errors[name].join(',') %></span>
+    <% end %>
+  </div>
+</div>
+

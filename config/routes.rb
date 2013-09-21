@@ -1,5 +1,11 @@
 Future::Application.routes.draw do
-  resources :plans
+  resources :plan_days
+
+  resources :plans do
+    member do
+      post :build
+    end
+  end
 
   resources :trades
 
