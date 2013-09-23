@@ -13,11 +13,11 @@
         <%= t.text_area :description, :size=>'60x8', :style=>"width:500px;" %>
       </div>
     </div>
-
+    <%= hidden_field_tag 'return_to', request.referer %>
     <div class="control-group">
       <div class="controls">
         <button type="submit" class="btn">提交</button>
-        <%= link_to '返回', plans_path%>
+        <%= link_to '返回', request.referer %>
       </div>
     </div>
   </fieldset>
