@@ -1,6 +1,13 @@
-<p>
-<%=link_to '新建', new_plan_path %>
-</p>
+<div style="padding:0 0 10px 0;">
+<%= link_to '新建', new_plan_path %>
+<%= link_to '今日任务', index_by_day_plans_path(:task_date=>Date.today.to_s)%>
+<%= link_to '明日任务', index_by_day_plans_path(:task_date=>(Date.today+1).to_s)%>
+<%= link_to '后日任务', index_by_day_plans_path(:task_date=>(Date.today+2).to_s)%>
+<%= form_tag index_by_day_plans_path, :method=>'get', :class=>"form-search", :style=>"display:inline; padding-left: 40px;" do %>
+  <input type="text" class="input-medium search-query" name="task_date">
+  <button type="submit" class="btn">查找</button>
+<% end %>
+</div>
 <table class="table table-bordered">
   <tr>
     <th>名称</th>
@@ -19,8 +26,8 @@
       <td><%= e.plan_days.count %></td>
       <td><%= e.task_count %></td>
       <td><%= e.review_plan %></td>
-      <th><%= e.max_task_per_day %></th>
-      <th><%= e.max_new_task_per_day %></th>
+      <td><%= e.max_task_per_day %></td>
+      <td><%= e.max_new_task_per_day %></td>
       <td>
         <%= link_to '查看', plan_path(e)%>
         <%= link_to '修改', edit_plan_path(e)%>
