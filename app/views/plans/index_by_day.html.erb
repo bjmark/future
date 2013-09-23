@@ -1,0 +1,6 @@
+<p>
+<%= link_to '返回', plans_path %>
+</p>
+<% @plans.each do |e| %>
+  <%= render 'show', :plan=>e[0], :plan_days=>e[1]%>
+<% end %>

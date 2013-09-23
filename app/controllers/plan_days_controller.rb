@@ -25,7 +25,7 @@ class PlanDaysController < ApplicationController
     end
     @plan_day.save
 
-    redirect_to plan_path(@plan_day.plan)
+    redirect_to (params[:return_to] or plan_path(@plan_day.plan))
   end
 
   private

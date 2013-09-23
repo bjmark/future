@@ -1,0 +1,42 @@
+<% #caller: plan/show %>
+<table class="table table-bordered">
+  <tr>
+    <th>名称</th>
+    <th>开始日期</th>
+    <th>所需天数</th>
+    <th>任务数</th>
+    <th>复习计划</th>
+    <th>每日最多任务数</th>
+    <th>每日最多新任务数</th>
+  </tr>
+  <tr>
+    <td><%= plan.name %></td>
+    <td><%= plan.start_date %></td>
+    <td><%= plan.plan_days.count %></td>
+    <td><%= plan.task_count %></td>
+    <td><%= plan.review_plan %></td>
+    <td><%= plan.max_task_per_day %></td>
+    <td><%= plan.max_new_task_per_day %></td>
+  </tr>
+</table>
+<pre>
+<%= plan.description %>
+</pre>
+<table class="table table-bordered">
+  <tr>
+    <th>日期</th>
+    <th>新任务</th>
+    <th>任务</th>
+    <th>完成任务</th>
+    <th></th>
+  </tr>
+  <% plan_days.each do |e| %>
+    <tr class="<%= 'success' if e.is_done == 'y' %>">
+      <td><%= e.task_date%></td>
+      <td><%= e.new_task%></td>
+      <td><%= e.task%></td>
+      <td><%= e.finish_task%></td>
+      <td><%= link_to '修改', edit_plan_day_path(e) %></td>
+    </tr>
+  <% end %>
+</table>

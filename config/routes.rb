@@ -5,6 +5,10 @@ Future::Application.routes.draw do
     member do
       post :build
     end
+
+    collection do
+      get :index_by_day
+    end
   end
 
   resources :trades

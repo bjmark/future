@@ -7,6 +7,22 @@ class PlansController < ApplicationController
     @plans = Plan.all
   end
 
+  def index_by_day
+    task_date = params[:task_date]
+    begin
+      task_date = task_date.to_date
+    rescue
+      @plan = [] and return 
+    end
+
+    plan_days = PlanDay.where(:task_date=>task_date)
+
+    plan_ids = plan_days.collect{|e| e.plan_id}
+    plans = Plan.where(:id=>plan_ids).order("id")
+
+    @plans = plans.collect{|e| [e, plan_days.find_all{|d| d.plan_id == e.id }]}
+  end
+
   def show
     @plan = Plan.find(params[:id])
   end
@@ -35,7 +51,7 @@ class PlansController < ApplicationController
   def update
     @plan = Plan.find(params[:id])
     fill_attr(@plan)
-    
+
     @plan.my_validate
     if @plan.errors.empty?
       @plan.save
