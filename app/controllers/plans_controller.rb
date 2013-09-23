@@ -39,7 +39,7 @@ class PlansController < ApplicationController
     @plan.my_validate
     if @plan.errors.empty?
       @plan.save
-      redirect_to plans_path
+      redirect_to (params[:return_to] or plans_path)
     else
       render "edit"
     end
