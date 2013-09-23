@@ -80,11 +80,11 @@ class Plan < ActiveRecord::Base
     if self.task_count.blank?
       errors.add(:task_count, "任务数不能为空")
     end
-    
+=begin 
     if self.review_plan.blank?
       errors.add(:review_plan, "复习计划不能为空")
     end
-    
+=end
     if self.max_task_per_day.blank?
       errors.add(:max_task_per_day, "每日最多任务数不能为空")
     end
