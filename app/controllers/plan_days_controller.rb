@@ -9,6 +9,9 @@ class PlanDaysController < ApplicationController
  
   def update
     @plan_day = PlanDay.find(params[:id])
+    
+    @plan_day.note = params[:plan_day][:note]
+
     finish_task = params[:plan_day][:finish_task]
     finish_task = finish_task.split(',')
 
