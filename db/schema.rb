@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130920124059) do
+ActiveRecord::Schema.define(version: 20130924012729) do
 
   create_table "plan_days", force: true do |t|
     t.date     "task_date"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20130920124059) do
     t.string   "new_task"
     t.string   "finish_task"
     t.string   "is_done",     limit: 1
+    t.string   "note"
   end
 
   create_table "plans", force: true do |t|

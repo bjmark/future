@@ -8,4 +8,5 @@
 #rails g resource plan_day
 #rails g migration add_description
 #rails g migration add_task
-rails g migration add_finish_task
+#rails g migration add_finish_task
+rails g migration add_note

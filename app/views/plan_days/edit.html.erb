@@ -25,6 +25,12 @@
         <%= t.text_field :finish_task %>
       </div>
     </div>
+    <div class="control-group">
+      <label class="control-label">说明</label>
+      <div class="controls">
+        <%= t.text_field :note %>
+      </div>
+    </div>
     <%= hidden_field_tag 'return_to', request.referer %>
     <div class="control-group">
       <div class="controls">
