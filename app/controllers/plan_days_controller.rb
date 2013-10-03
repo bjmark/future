@@ -13,15 +13,14 @@ class PlanDaysController < ApplicationController
     @plan_day.note = params[:plan_day][:note]
 
     finish_task = params[:plan_day][:finish_task]
-    finish_task = finish_task.split(',')
+    finish_task = finish_task.split(',').collect{|e| e.to_i}
 
-    task = @plan_day.task.split(',')
+    task = @plan_day.task.split(',').collect{|e| e.to_i}
 
     finish_task = finish_task - (finish_task - task)
-    finish_task.sort!
     
     @plan_day.finish_task = finish_task.join(',')
-    if finish_task == task
+    if finish_task.sort == task.sort
       @plan_day.is_done = 'y'
     else
       @plan_day.is_done = 'n'
