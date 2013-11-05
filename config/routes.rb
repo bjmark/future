@@ -4,6 +4,7 @@ Future::Application.routes.draw do
   resources :plans do
     member do
       post :build
+      post :clone
     end
 
     collection do

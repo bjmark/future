@@ -31,6 +31,9 @@
       <td>
         <%= link_to '查看', plan_path(e)%>
         <%= link_to '修改', edit_plan_path(e)%>
+        <%= form_for e, :method=>:post, :url=>clone_plan_path(e), :html => {:style=>"display:inline"} do |f| %>
+          <%= f.submit '克隆', :confirm => '确定吗?',:class=>"btn" %>
+        <% end %>
         <%= form_for e, :method => :delete, :html => {:style=>"display:inline"} do |f| %>
           <%= f.submit '删除', :confirm => '确定吗?',:class=>"btn" %>
         <% end %>

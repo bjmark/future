@@ -44,6 +44,15 @@ class PlansController < ApplicationController
     end
   end
 
+  def clone
+    plan = Plan.find(params[:id])
+    new_plan = Plan.new
+    fill_attr(new_plan,plan)
+    new_plan.name << "(克隆)"
+    new_plan.save!
+    redirect_to plans_path
+  end
+
   def edit
     @plan = Plan.find(params[:id])
   end
@@ -59,8 +68,6 @@ class PlansController < ApplicationController
     else
       render "edit"
     end
-
-
   end
 
   def destroy
@@ -90,9 +97,10 @@ class PlansController < ApplicationController
 
   private
 
-  def fill_attr(obj)
+  def fill_attr(obj,attrs = params[:plan])
     [:name, :start_date, :task_count, :review_plan, :max_task_per_day, :max_new_task_per_day, :description].each do |name|
-      obj.send("#{name}=",params[:plan][name])
+      #obj.send("#{name}=",params[:plan][name])
+      obj.send("#{name}=", attrs[name])
     end
   end
 
