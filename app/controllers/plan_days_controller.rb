@@ -13,7 +13,7 @@ class PlanDaysController < ApplicationController
     @plan_day.note = params[:plan_day][:note]
 
     finish_task = params[:plan_day][:finish_task]
-    finish_task = finish_task.split(/\s*,{0,1}\s*/).collect{|e| e.to_i}
+    finish_task = finish_task.split(/\s*,\s*|\s+/).collect{|e| e.to_i}
 
     task = @plan_day.task.split(',').collect{|e| e.to_i}
 
@@ -25,7 +25,7 @@ class PlanDaysController < ApplicationController
     else
       @plan_day.is_done = 'n'
     end
-    @plan_day.save!
+    @plan_day.save
 
     redirect_to (params[:return_to] or plan_path(@plan_day.plan))
   end
