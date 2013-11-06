@@ -13,7 +13,7 @@ class PlanDaysController < ApplicationController
     @plan_day.note = params[:plan_day][:note]
 
     finish_task = params[:plan_day][:finish_task]
-    finish_task = finish_task.split(',').collect{|e| e.to_i}
+    finish_task = finish_task.split(/\s*,\s*|\s+/).collect{|e| e.to_i}
 
     task = @plan_day.task.split(',').collect{|e| e.to_i}
 
