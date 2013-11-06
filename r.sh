@@ -4,7 +4,8 @@
 
 #controller
 #rspec -f d spec/controllers/trades_controller_spec.rb 
-rspec -f d spec/controllers/plans_controller_spec.rb 
+#rspec -f d spec/controllers/plans_controller_spec.rb 
+rspec -f d spec/controllers/plan_days_controller_spec.rb 
 
 #model
 #rspec -f d spec/models/trade_spec.rb 
