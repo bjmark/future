@@ -4,7 +4,7 @@ class PlansController < ApplicationController
   before_filter :set_title
 
   def index
-    @plans = Plan.all
+    @plans = Plan.all.order("id DESC")
   end
 
   def index_by_day
