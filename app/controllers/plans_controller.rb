@@ -12,7 +12,7 @@ class PlansController < ApplicationController
     begin
       task_date = task_date.to_date
     rescue
-      @plan = [] and return 
+      @plans = [] and return 
     end
 
     plan_days = PlanDay.where(:task_date=>task_date)
@@ -21,6 +21,7 @@ class PlansController < ApplicationController
     plans = Plan.where(:id=>plan_ids).order("id")
 
     @plans = plans.collect{|e| [e, plan_days.find_all{|d| d.plan_id == e.id }]}
+
   end
 
   def show
