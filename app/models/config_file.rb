@@ -14,7 +14,7 @@ class ConfigFile
     
     @h = {}
     content.each do |e|
-      k, v = e.split(/\s/)
+      k, v = e.split(/\s+/)
       @h[k] = v
     end
     @h
